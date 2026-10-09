@@ -1,7 +1,12 @@
-"""bindchain 端到端 demo：人批 SQL → 閘口驗證執行 → 收據回鏈 → 離線驗證。"""
+"""bindchain 端到端 demo：人批 SQL → 閘口驗證執行 → 收據回鏈 → 離線驗證。
+
+依賴 canonlock：clone https://github.com/fango19961106-dotcom/canonlock 喺側邊（../canonlock/）。
+"""
 import sqlite3, os, sys
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from canonlock import CanonLock, Policy   # pip 安裝或將 canonlock.py 放喺側邊
+_here = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, _here)
+sys.path.insert(0, os.path.join(_here, "..", "canonlock"))
+from canonlock import CanonLock, Policy
 from bindchain import Identity, Chain, delegate, attest
 from bindchain_gate import BoundGate
 
